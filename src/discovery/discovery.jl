@@ -36,7 +36,7 @@ end
 
 export lld_artifact, lld_path, libhsaruntime, libdevice_libs, libhip
 export librocblas, librocsparse, librocsolver, librocalution
-export librocrand, librocfft, libMIOpen_path
+export librocrand, librocfft, libMIOpen_path, librocprofiler64v2
 export julia_exeflags
 
 function _hip_runtime_version()
@@ -113,6 +113,7 @@ function __init__()
         global librocrand = get_library(lib_prefix * "rocrand"; rocm_path)
         global librocfft = get_library(lib_prefix * "rocfft"; rocm_path)
         global libMIOpen_path = get_library(lib_prefix * "MIOpen"; rocm_path)
+        global librocprofiler64v2 = get_library(lib_prefix * "rocprofiler64v2"; rocm_path)
     catch err
         @error """ROCm discovery failed!
         Discovered ROCm path: $rocm_path.
